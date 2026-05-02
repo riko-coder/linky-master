@@ -14,6 +14,11 @@ class LocalLinkRepository implements LinkRepository {
   }
 
   @override
+  List<LinkItem> getAllLinks() {
+    return HiveService.getAllLinks();
+  }
+
+  @override
   Future<void> deleteLink(String id) async {
     await HiveService.deleteLink(id);
   }

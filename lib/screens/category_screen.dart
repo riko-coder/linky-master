@@ -147,6 +147,20 @@ class _CategoryScreenState extends State<CategoryScreen> with WidgetsBindingObse
     }
   }
 
+  /// Format a DateTime to a readable string like "Oct 24, 2023 at 14:30"
+  String _formatDate(DateTime date) {
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ];
+    final month = months[date.month - 1];
+    final day = date.day;
+    final year = date.year;
+    final hour = date.hour.toString().padLeft(2, '0');
+    final minute = date.minute.toString().padLeft(2, '0');
+    return '$month $day, $year at $hour:$minute';
+  }
+
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
@@ -238,6 +252,14 @@ class _CategoryScreenState extends State<CategoryScreen> with WidgetsBindingObse
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
                                                 color: titleColor,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 2),
+                                            Text(
+                                              _formatDate(link.createdAt),
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: titleColor.withValues(alpha: 0.5),
                                               ),
                                             ),
                                             const SizedBox(height: 4),

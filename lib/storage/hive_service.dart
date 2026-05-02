@@ -120,6 +120,10 @@ class HiveService {
         .toList();
   }
 
+  static List<LinkItem> getAllLinks() {
+    return _linksBoxInstance.values.toList();
+  }
+
   static int getLinkCount(String categoryId) {
     return _linksBoxInstance.values
         .where((link) => link.categoryId == categoryId)
